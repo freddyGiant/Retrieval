@@ -105,6 +105,11 @@ function draw() {
     scriptDisplay(10, 350);
 }
 
+/*
+ * TODO: GAVIN: I just realized this function's name is quite unclear. It has
+ * nothing to do with what happens on click, so it should probably be called
+ * "clickinstructions" or maybe even just "instructions".
+ */
 function click() {
     fill(0, 0, 0);
     stroke(0.25);
