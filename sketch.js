@@ -4,7 +4,7 @@
 // Title: Retrieval
 // USE LOCALHOST !!!
 
-//imgs & particles
+// imgs & particles
 let selfies = []; // to hold all my selfies
 let pixelsArray = []; // to hold all my pixels
 let particles = []; // to hold all my particles
@@ -14,6 +14,9 @@ let particleCount = 100000; // # of particles on each img (helped to minimize br
 let birthdaySong;
 
 // script
+/*
+ * TODO: GAVIN: questionable variable name. consider `scriptIndex`?
+ */
 let currentText = 0;
 let lastChangeTime = 0;
 let changeInterval = 6000;
@@ -92,6 +95,11 @@ function selfieSelection(index) {
 
 function draw() {
     background(220);
+    /*
+     * TODO: GAVIN: `checkParticles()` is very inefficient. is this the best way
+     * of accomplishing this? also, checkParticles() shouldn't take any inputs
+     * (you originally passed 50, 50).
+     */
     checkParticles(50, 50);
     click();
     scriptDisplay(10, 350);
@@ -121,6 +129,10 @@ function scriptDisplay(x, y) {
 }
 
 function changeText() {
+    /*
+     * TODO: GAVIN: this is different from how you do essentially the same operation
+     * in a few other places. consider using the % method?
+     */
     currentText++;
     if (currentText >= script.length) {
         currentText = 0;
