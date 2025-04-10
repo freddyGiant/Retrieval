@@ -14,13 +14,12 @@ let particleCount = 100000; // # of particles on each img (helped to minimize br
 let birthdaySong;
 
 // script
-/*
- * TODO: GAVIN: questionable variable name. consider `scriptIndex`?
- */
-let currentText = 0;
-let lastChangeTime = 0;
-let changeInterval = 6000;
-let script = [
+// /* TODO: GAVIN: questionable variable name. consider `scriptIndex`?
+//  */
+// let currentText = 0;
+// let lastChangeTime = 0;
+const CHANGE_INTERVAL = 6000;
+const SCRIPT = [
     "Birthdays used to feel trivial and even burdensome",
     "rather than a celebration",
     "I never looked forward to mine",
@@ -59,8 +58,7 @@ function setup() {
 }
 
 // makes the pixels into particles
-/**
- * TODO: GAVIN: Come to think of it, why is this really important function called
+/* TODO: GAVIN: Come to think of it, why is this really important function called
  * this? And why doesn't it just take currentSelfie directly?
  */
 function selfieSelection(index) {
@@ -69,8 +67,7 @@ function selfieSelection(index) {
     let currentSelfie = selfies[index];
     currentSelfie.img.loadPixels();
 
-    /*
-     * TODO: GAVIN: what does this comment mean? it made the line too long
+    /* TODO: GAVIN: what does this comment mean? it made the line too long
      * (you generally wanna keep it under ~82 cols)
      */
     // limits the amount of pixels = particles (to reduce lag)
@@ -89,63 +86,33 @@ function selfieSelection(index) {
         let particle = new Particle(
             px,
             py,
-            random(-0.5, 1.0),
+            random(-0.5, 1),
             random(-0.5, 1),
             color(r, g, b)
         );
+        
         particles.push(particle);
     }
 }
 
 function draw() {
     background(220);
-    /*
-     * TODO: GAVIN: `checkParticles()` is very inefficient. is this the best way
+    /* TODO: GAVIN: `checkParticles()` is very inefficient. is this the best way
      * of accomplishing this? also, checkParticles() shouldn't take any inputs
      * (you originally passed 50, 50).
      */
     checkParticles();
-    click();
-    scriptDisplay(10, 350);
-}
-
-/*
- * TODO: GAVIN: I just realized this function's name is quite unclear. It has
- * nothing to do with what happens on click, so it should probably be called
- * "clickinstructions" or maybe even just "instructions".
- */
-function click() {
+    // click();
+    // scriptDisplay(10, 350);
+    
     fill(0, 0, 0);
     stroke(0.25);
     textFont("Courier New");
     textSize(11);
+    
+    // TODO: GAVIN: btw, i'm p sure there's a way to display centered text
     text("Click to hear birthday Song!", 110, 30);
-}
-
-function scriptDisplay(x, y) {
-    fill(0, 0, 0);
-    stroke(0.25);
-    textFont("Courier New");
-    textSize(11);
-    text(script[currentText], x, y);
-
-    // check if the timing for script change to display is accurate
-    let currentTime = millis();
-    if (currentTime - lastChangeTime >= changeInterval) {
-        lastChangeTime = currentTime;
-        changeText();
-    }
-}
-
-function changeText() {
-    /*
-     * TODO: GAVIN: this is different from how you do essentially the same operation
-     * in a few other places. consider using the % method?
-     */
-    currentText++;
-    if (currentText >= script.length) {
-        currentText = 0;
-    }
+    text(SCRIPT[Math.floor(millis() / CHANGE_INTERVAL) % SCRIPT.length], 10, 350);
 }
 
 function mousePressed() {
