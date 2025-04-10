@@ -9,12 +9,12 @@ function particleStep() {
     }
 
     // controls the repeller of particles using mouseX & mouseY
-    var dp = dist(this.x, this.y, mouseX, mouseY);
+    let dp = dist(this.x, this.y, mouseX, mouseY);
     if (dp < 1) dp = 1;
 
-    var f = (particleCount / Math.pow(dp, 2)) * 0.0025;
-    var dirx = (this.x - mouseX) / dp;
-    var diry = (this.y - mouseY) / dp;
+    let f = (particleCount / Math.pow(dp, 2)) * 0.0025;
+    let dirx = (this.x - mouseX) / dp;
+    let diry = (this.y - mouseY) / dp;
 
     this.dx += f * dirx;
     this.dy += f * diry;
