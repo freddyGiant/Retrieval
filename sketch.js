@@ -59,6 +59,10 @@ function setup() {
 }
 
 // makes the pixels into particles
+/**
+ * TODO: GAVIN: Come to think of it, why is this really important function called
+ * this? And why doesn't it just take currentSelfie directly?
+ */
 function selfieSelection(index) {
     particles = [];
 
@@ -82,7 +86,7 @@ function selfieSelection(index) {
         let px = x * (width / currentSelfie.img.width);
         let py = y * (height / currentSelfie.img.height);
 
-        let particle = makeParticle(
+        let particle = new Particle(
             px,
             py,
             random(-0.5, 1.0),
@@ -100,7 +104,7 @@ function draw() {
      * of accomplishing this? also, checkParticles() shouldn't take any inputs
      * (you originally passed 50, 50).
      */
-    checkParticles(50, 50);
+    checkParticles();
     click();
     scriptDisplay(10, 350);
 }
