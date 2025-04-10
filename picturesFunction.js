@@ -2,32 +2,30 @@
  * TODO: GAVIN: consider consolidating this into sketch.js. it's not too long.
  * there are also several other ways to do this. for instance, maybe instead of
  * having a `push` on each separate line, you could
- *  - read from an existing list of image urls
- *  - read from an existing list of image filenames, and programmatically 
- *    construct the urls, since a significant amount of each url is repeated 
- *    (and, more importantly, this could be running on any url beside
- *    `localhost`, or hosted on a different port, and should account for that.
- *    I'll leave figuring out how to load resources at relative locations (not 
- *    having to specify a hard-coded constant) as an exercise for you though.)
+ *  - read from an existing list of image filenames
  *  - programmatically load everything in the images folder (this won't preserve
  *    order, so it's probably not what you want.)
  * and there are many other ways to do this. I want to stress though, that this
- * way of doing it is also fine and correct (with the exception of the URL issue,
- * for instance `localhost` on my machine points at `127.0.0.1`, but this isn't
- * true of all machines, and there could be a situtation where a user opens it
- * directly on `127.0.0.1`, but then these loadImages don't resolve) and that
+ * way of doing it is also fine and correct and that
  * some programmers would be disgusted by this, while others would actually
  * prefer it. The programmatic ways might be a little more agreeable, though.
+ * 
+ * IMPORTANTLY THOUGH: I changed this code to use relative paths instead of an
+ * absolute url (which p5's loadImage supports either way). This simple change 
+ * means this code will work independently of what IP it's being hosted on
+ * (given the path to the images is what it's expecting. Whether this would
+ * work with everything moved into a subdirectory remains to be seen through
+ * experimentation (i'm not sure how clever loadImage is)).
  */
 function pictures(){
-    selfies.push({ img: loadImage("http://localhost:8000/images/babypic1.png") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/babypic2.jpg") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/babypic3.jpg") })
-    selfies.push({ img: loadImage("http://localhost:8000/images/13yrpic.jpg") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/14yrpic.png") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/15yrpic.jpg") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/17yrpic.jpg") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/18yrpic.jpg") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/20yrpic.jpg") });
-    selfies.push({ img: loadImage("http://localhost:8000/images/birthdaycake.jpg") });
+    selfies.push({ img: loadImage("/images/babypic1.png") });
+    selfies.push({ img: loadImage("/images/babypic2.jpg") });
+    selfies.push({ img: loadImage("/images/babypic3.jpg") })
+    selfies.push({ img: loadImage("/images/13yrpic.jpg") });
+    selfies.push({ img: loadImage("/images/14yrpic.png") });
+    selfies.push({ img: loadImage("/images/15yrpic.jpg") });
+    selfies.push({ img: loadImage("/images/17yrpic.jpg") });
+    selfies.push({ img: loadImage("/images/18yrpic.jpg") });
+    selfies.push({ img: loadImage("/images/20yrpic.jpg") });
+    selfies.push({ img: loadImage("/images/birthdaycake.jpg") });
 }
