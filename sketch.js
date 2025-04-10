@@ -6,7 +6,6 @@
 
 // imgs & particles
 let selfies = []; // to hold all my selfies
-let pixelsArray = []; // to hold all my pixels
 let particles = []; // to hold all my particles
 let IndexCounter = 0; // tracks my images
 let particleCount = 100000; // # of particles on each img (helped to minimize browser from crashing)
